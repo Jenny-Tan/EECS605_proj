@@ -1,6 +1,5 @@
 import './App.css';
 import React from 'react';
-import $ from 'jquery';
 
 // atob is deprecated but this function converts base64string to text string
 const decodeFileBase64 = (base64String) => {
@@ -46,14 +45,14 @@ function App() {
     console.log(inputFile);
     
     //added by tyww to show the pictures
-    const reader = new FileReader();
-    reader.onload = function (e){
-                        $('#blah')
-                        .attr('src', e.target.result)
-                        .width(150)
-                        .height(200);
-    }
-    reader.readAsDataURL(event);
+//     const reader = new FileReader();
+//     reader.onload = function (e){
+//                         $('#blah')
+//                         .attr('src', e.target.result)
+//                         .width(150)
+//                         .height(200);
+//     }
+//     reader.readAsDataURL(event);
     //end tyww
 
     // convert file to bytes data
@@ -112,8 +111,10 @@ function App() {
       <div className="Input">
         <h1>Input</h1>
         <form onSubmit={handleSubmit}>
-          <input type="file" accept=".png" onChange={handleChange} />
-          <button type="submit" disabled={buttonDisable}>{buttonText}</button>
+          <input accept="image/*" type='file' id="imgInp" />
+          <img id="blah" src="#" alt="your image" />
+          //<input type="file" accept=".png" onChange={handleChange} />
+          //<button type="submit" disabled={buttonDisable}>{buttonText}</button>
         </form>
       </div>
       <div className="Output">
