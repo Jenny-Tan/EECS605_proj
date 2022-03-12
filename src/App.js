@@ -34,12 +34,7 @@ function App() {
       };
     });
   }
-    imgInp.onchange = evt => {
-      const [file] = imgInp.files
-      if (file) {
-        blah.src = URL.createObjectURL(file)
-      }
-    }
+
   // handle file input
   const handleChange = async (event) => {
     // Clear output text.
@@ -118,11 +113,18 @@ function App() {
         <form onSubmit={handleSubmit}>
           <input type="file" accept=".png" onChange={handleChange} />
           <button type="submit" disabled={buttonDisable}>{buttonText}</button>
-        </form>
-        <form runat="server">
-          <input accept="image/*" type='file' id="imgInp" />
-          <img id="blah" src="#" alt="your image" />
-        </form>
+        <input type="file" accept="image/*" onchange="loadFile(event)">
+        <img id="output"/>
+        <script>
+          var loadFile = function(event) {
+            var reader = new FileReader();
+            reader.onload = function(){
+              var output = document.getElementById('output');
+              output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+          };
+        </script>
       </div>
       <div className="Output">
         <h1>Results</h1>
