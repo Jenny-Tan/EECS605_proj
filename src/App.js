@@ -61,7 +61,7 @@ function App() {
 
     // temporarily disable submit button
     setButtonDisable(true);
-    setButtonText('Loading Result');
+    setButtonText('tyww Loading Result');
 
     // make POST request
     console.log('making POST request...');
