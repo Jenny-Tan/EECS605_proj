@@ -121,7 +121,7 @@ function App() {
         <form onSubmit={handleSubmit}>
           <input type="file" accept=".png" onChange={handleChange} />
           <button type="submit" disabled={buttonDisable}>{buttonText}</button>
-        <input type="file" accept="image/*" onchange="loadFile(event)">
+        <input type="file" accept="image/*" onchange="loadFile(event)" />
         <img id="output"/>
       </div>
       <div className="Output">
