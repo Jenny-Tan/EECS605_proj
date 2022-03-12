@@ -43,6 +43,17 @@ function App() {
     console.log('newly uploaded file');
     const inputFile = event.target.files[0];
     console.log(inputFile);
+    
+    //added by tyww to show the pictures
+    const reader = new FileReader();
+    reader.onload = function (e){
+                        $('#blah')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(200);
+    }
+    reader.readAsDataURL(event);
+    //end tyww
 
     // convert file to bytes data
     const base64Data = await convertFileToBytes(inputFile);
