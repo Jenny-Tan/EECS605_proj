@@ -65,6 +65,7 @@ function App() {
     // enable submit button
     setButtonDisable(false);
   }
+  
   const loadFile = function(event) {
     const reader = new FileReader();
     reader.onload = function(){
@@ -73,6 +74,10 @@ function App() {
     };
     reader.readAsDataURL(event.target.files[0]);
   };
+  
+  function preview() {
+    frame.src=URL.createObjectURL(event.target.files[0]);
+};
 
   // handle file submission
   const handleSubmit = (event) => {
@@ -122,8 +127,14 @@ function App() {
           <input type="file" accept=".png" onChange={handleChange} />
           <button type="submit" disabled={buttonDisable}>{buttonText}</button>
         </form>
-        <input type="file" accept="image/*" onchange="loadFile(event)" />
-        <img id="output"/>
+        <form>
+          <input type="file" accept="image/*" onchange="loadFile(event)" />
+          <img id="output"/>
+        </form>
+        <form>
+          <input type="file" onchange="preview()">
+          <img id="frame" src="" width="100px" height="100px"/>
+        </form>
       </div>
       <div className="Output">
         <h1>Results</h1>
