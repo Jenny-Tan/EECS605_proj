@@ -111,10 +111,12 @@ function App() {
       <div className="Input">
         <h1>Input</h1>
         <form onSubmit={handleSubmit}>
+          <input type="file" accept=".png" onChange={handleChange} />
+          <button type="submit" disabled={buttonDisable}>{buttonText}</button>
+        </form>
+        <form runat="server">
           <input accept="image/*" type='file' id="imgInp" />
           <img id="blah" src="#" alt="your image" />
-          //<input type="file" accept=".png" onChange={handleChange} />
-          //<button type="submit" disabled={buttonDisable}>{buttonText}</button>
         </form>
       </div>
       <div className="Output">
