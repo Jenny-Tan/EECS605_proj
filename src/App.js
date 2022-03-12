@@ -74,10 +74,7 @@ function App() {
     };
     reader.readAsDataURL(event.target.files[0]);
   };
-  
-//   function preview() {
-//     frame.src=URL.createObjectURL(event.target.files[0]);
-// };
+ 
 
   // handle file submission
   const handleSubmit = (event) => {
