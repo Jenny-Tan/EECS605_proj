@@ -132,7 +132,7 @@ function App() {
           <img id="output"/>
         </form>
         <form>
-          <input type="file" onchange="preview()">
+          <input type="file" onchange="preview()" />
           <img id="frame" src="" width="100px" height="100px"/>
         </form>
       </div>
