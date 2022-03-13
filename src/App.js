@@ -165,6 +165,19 @@ function App() {
             </div>
         </div>
 
+<form>  
+<b> Select your City from the list</b>  
+<select id = "option" onchange = "dropdownMenu()" >  
+<option> ---Choose City--- </option>  
+<option> New York </option>  
+<option> Amsterdam </option>  
+<option> Paris </option>  
+<option> London </option>  
+</select>  
+<p> Your selected city is:  
+<input type = "text" id = "city" size = "20" </p>  
+</form> 
+
     </div>
   );
 }
