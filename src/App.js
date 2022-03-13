@@ -115,6 +115,22 @@ function App() {
       console.log('POST request success');
     })
   }
+  
+          function show_list() {
+            var courses = document.getElementById("courses_id");
+  
+            if (courses.style.display == "block") {
+                courses.style.display = "none";
+            } else {
+                courses.style.display = "block";
+            }
+        }
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropdown_button')) {
+                document.getElementById('courses_id')
+                    .style.display = "none";
+            }
+        }    
 
   return (
     <div className="App">
@@ -133,6 +149,22 @@ function App() {
           <img id="output" src="" width="100px" height="100px"/>
         </form>
       </div>
+
+      <div class="dropdown_list">
+            <button class="dropdown_button" 
+                onclick="show_list()">
+                Select course
+            </button>
+  
+            <div id="courses_id" class="courses">
+                <li><a href="">Machine learing</a></li>
+                <li><a href="">Data science</a></li>
+                <li><a href="">Data analysis</a></li>
+                <li><a href="">Data mining</a></li>
+                <li><a href="">Data warehousing</a></li>
+            </div>
+        </div>
+
     </div>
   );
 }
