@@ -130,7 +130,11 @@ function App() {
                 document.getElementById('courses_id')
                     .style.display = "none";
             }
-        }    
+        }   
+  function dropdownMenu() {  
+var list = document.getElementById("option");  
+document.getElementById("city").value = list.options[list.selectedIndex].text;  
+} 
 
   return (
     <div className="App">
