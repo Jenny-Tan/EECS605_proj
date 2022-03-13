@@ -180,7 +180,7 @@ document.getElementById("city").value = list.options[list.selectedIndex].text;
 <option> London </option>  
 </select>  
 <p> Your selected city is:  
-<input type = "text" id = "city" size = "20" </p>  
+<input type = "text" id = "city" size = "20" /> </p>  
 </form> 
 
     </div>
