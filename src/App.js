@@ -131,6 +131,7 @@ function App() {
                     .style.display = "none";
             }
         }   
+  
   function dropdownMenu() {  
 var list = document.getElementById("option");  
 document.getElementById("city").value = list.options[list.selectedIndex].text;  
