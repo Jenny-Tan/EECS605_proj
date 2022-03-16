@@ -173,9 +173,10 @@ function App() {
   }
   
   return (
-    <div className="App">
-      <div className="Input">
-        <h1>Input</h1>
+    
+    <div className="split left">
+      <div className="centered">
+      <h1>Input</h1>
         <form onSubmit={handleSubmitDebug}>
           <div>
           <label htmlFor="selectTimeRange">Select time range from the list: </label>  
@@ -204,8 +205,13 @@ function App() {
           </div>
         </form>
       </div>
-      <div className="Output">
-        <h1>Results</h1>
+    </div>
+    
+    
+    
+    <div className="split right">
+      <div className="centered">
+      <h1>Results</h1>
         <p>
           {outputConsole}
         </p>
@@ -217,6 +223,7 @@ function App() {
       </div>
       <div>
         <img id="Image" src={outputImg} alt="result figure" hidden={hiddenImg} />
+      </div>
       </div>
     </div>
   );
