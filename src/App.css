@@ -38,11 +38,11 @@
 }
 
 input:invalid+span:after {
-  content: 'Nada';
+  content: '🤬';
   padding-left: 5px;
 }
 
 input:valid+span:after {
-  content: 'Yeah';
+  content: '🤩';
   padding-left: 5px;
 }
