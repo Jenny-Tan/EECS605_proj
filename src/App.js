@@ -216,7 +216,7 @@ function App() {
         <p>
           {outputConsole}
         </p>
-      </div>
+      
       <div className="Debug_Report">
         <p>
           {textBox}
@@ -225,6 +225,7 @@ function App() {
       <div>
         <img id="Image" src={outputImg} alt="result figure" hidden={hiddenImg} />
       </div>
+</div>
       </div>
     </div>
   );
