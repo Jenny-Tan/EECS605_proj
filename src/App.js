@@ -173,7 +173,7 @@ function App() {
   }
   
   return (
-    
+    <div className="App">
     <div className="split left">
       <div className="centered">
       <h1>Input</h1>
