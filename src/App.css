@@ -37,17 +37,12 @@
   }
 }
 
-@font-face {
-  font-family: 'Berkshire Swash';
-  font-style: normal;
-  font-weight: 400;
-  src: url('../fonts/berkshire-swash-v14-latin-regular.eot'); /* IE9 Compat Modes */
-  src: local(''),
-       url('../fonts/berkshire-swash-v14-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('../fonts/berkshire-swash-v14-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-       url('../fonts/berkshire-swash-v14-latin-regular.woff') format('woff'), /* Modern Browsers */
-       url('../fonts/berkshire-swash-v14-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('../fonts/berkshire-swash-v14-latin-regular.svg#BerkshireSwash') format('svg'); /* Legacy iOS */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+
+body, html {
+    font-family: 'Roboto', sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
 }
 
 
@@ -100,7 +95,7 @@ input:valid+span:after {
 }
 h1{
   color: white;
-  font-family: 'Berkshire Swash', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 
