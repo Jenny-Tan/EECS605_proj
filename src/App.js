@@ -182,7 +182,7 @@ function App() {
     
     
           <h1>Select time range from the list:</h1>
-          <label style="color:white" htmlFor="selectTimeRange">Select time range from the list: </label>  
+          <label htmlFor="selectTimeRange">Select time range from the list: </label>  
             <select id="selectTimeRange" onChange={inputTimeRange} required >  
               <option value="year"> year </option>  
               <option value="month"> month </option>  
