@@ -196,7 +196,7 @@ function App() {
               <span className="validity"></span>
             </div>
           <div>
-            <label htmlFor="initial_money" style={{color : 'white'; font-size: 14px;}}>Initial money to invest (from 1000 to 1e6): </label>
+            <label htmlFor="initial_money" style={{color : 'white'}}>Initial money to invest (from 1000 to 1e6): </label>
             <input id="initial_money" type="number" name="initial_money" min="1000" max="1000000" step="100" required
                 placeholder="e.g. 1000" onChange={inputInitialMoney} />
             <span className="validity"></span>
