@@ -37,10 +37,10 @@
   }
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');*/
 
 body, html {
-    font-family: 'Roboto', sans-serif;
+    font-family: "Brush Script MT", cursive;/*'Roboto', sans-serif;*/
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
 }
@@ -95,7 +95,7 @@ input:valid+span:after {
 }
 h1{
   color: white;
-  font-family: 'Roboto', sans-serif;
+  /*font-family: 'Roboto', sans-serif;*/
 }
 
 
