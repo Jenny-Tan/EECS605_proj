@@ -180,9 +180,7 @@ function App() {
         <form onSubmit={handleSubmitDebug}>
           <div>
     
-    
-          <h1>Select time range from the list:</h1>
-          <label htmlFor="selectTimeRange">Select time range from the list: </label>  
+          <label htmlFor="selectTimeRange" style={{color : 'white'}}>Select time range from the list: </label>  
             <select id="selectTimeRange" onChange={inputTimeRange} required >  
               <option value="year"> year </option>  
               <option value="month"> month </option>  
@@ -191,7 +189,7 @@ function App() {
             <span className="validity"></span>
           </div>
           <div>
-              <label htmlFor="selectCompany">Select company from the list: </label>  
+              <label htmlFor="selectCompany" style={{color : 'white'}}>Select company from the list: </label>  
               <select id="selectCompany" onChange={inputCompany} required>  
                 <option value="goog"> Google </option>  
               </select>
