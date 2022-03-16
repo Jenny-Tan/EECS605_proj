@@ -43,14 +43,12 @@ function App() {
   // handle time range input
   const inputTimeRange = async (event) => {  
     var list = document.getElementById("selectTimeRange"); 
-    list.style.color = "white";
     setTimeRange(list.options[list.selectedIndex].value);  
   } 
 
   // handle company input
   const inputCompany = async (event) => {
     var list = document.getElementById("selectCompany"); 
-    list.style.color = "white";
     setCompany(list.options[list.selectedIndex].value);
   }
 
