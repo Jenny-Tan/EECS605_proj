@@ -13,176 +13,211 @@ const decodeFileBase64 = (base64String) => {
 
 
 function App() {
-  const [inputFileData, setInputFileData] = React.useState(''); // represented as bytes data (string)
-  const [outputFileData, setOutputFileData] = React.useState(''); // represented as readable data (text string)
-  const [buttonDisable, setButtonDisable] = React.useState(true);
+  const apiUrl = 'https://izm659ydfg.execute-api.us-east-1.amazonaws.com/prod/';
+
+  const [buttonDisable, setButtonDisable] = React.useState(false);
   const [buttonText, setButtonText] = React.useState('Submit');
 
-  // convert file to bytes data
-  const convertFileToBytes = (inputFile) => {
-    console.log('converting file to bytes...');
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(inputFile); // reads file as bytes data
+  // input parameters
+  const [initialMoney, setInitialMoney] = React.useState('1000');
+  const [timeRange, setTimeRange] = React.useState('year');
+  const [company, setCompany] = React.useState('goog');
+  // output console
+  const [outputImg, setOutputImg] = React.useState("/images/digit.png")
+  const [hiddenImg, setHiddenImg] = React.useState(true);
+  const [outputConsole, setOutputConsole] = React.useState("output");
+  // debug use
+  const [textBox, setTextBox] = React.useState("debug");
 
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
+//   // initial setup, hide the image
+//   document.getElementById("Image").style.display = "none";
 
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
+  // sleep helper
+  const sleepHelper = ms => new Promise(r => setTimeout(r, ms));
+
+  // handle initial money input
+  const inputInitialMoney = async (event) => {
+    setInitialMoney(event.target.value);
   }
 
-  // handle file input
-  const handleChange = async (event) => {
-    // Clear output text.
-    setOutputFileData("");
+  // handle time range input
+  const inputTimeRange = async (event) => {  
+    var list = document.getElementById("selectTimeRange");  
+    setTimeRange(list.options[list.selectedIndex].value);  
+  } 
 
-    console.log('newly uploaded file');
-    const inputFile = event.target.files[0];
-    console.log(inputFile);
+  // handle company input
+  const inputCompany = async (event) => {
+    var list = document.getElementById("selectCompany"); 
+    setCompany(list.options[list.selectedIndex].value);
+  }
+
+  // parse txt result
+  const parseResultText = (resultTextJson) => {
+    setTextBox(resultTextJson["buy"]);
+  }
+
+  // parse image result
+  const parseResultImage = (resultImgBytes) => {
+    // document.getElementById("ItemPreview").src = "data:image/jpg;base64," + btoa(encodeURI(resultImgBytes));
+    setHiddenImg(false);
+    setOutputImg("data:image/jpeg;charset=utf-8;base64," + encodeURI(resultImgBytes))
+  }
+
+  // asynchronous function to handle http GET request to api url
+  // accept "resultRecieved", returns the same promise
+  const handleHttpGETRequest = async (resultReceived) => {
+    if (resultReceived) {
+      // re-enable submit button
+      setButtonDisable(false);
+      setButtonText('Submit');
+    } 
     
-    //added by tyww to show the pictures
-//     const reader = new FileReader();
-//     reader.onload = function (e){
-//                         $('#blah')
-//                         .attr('src', e.target.result)
-//                         .width(150)
-//                         .height(200);
-//     }
-//     reader.readAsDataURL(event);
-    //end tyww
+    else {
+      // setTimeout(() => {console.log("timeout in 15 seconds")}, 15000); // wait for every 15 seconds
+      await sleepHelper(15000); // wait for every 15 seconds
+      console.log("timeout in 15 seconds");
 
-    // convert file to bytes data
-    const base64Data = await convertFileToBytes(inputFile);
-    const base64DataArray = base64Data.split('base64,'); // need to get rid of 'data:image/png;base64,' at the beginning of encoded string
-    const encodedString = base64DataArray[1];
-    setInputFileData(encodedString);
-    console.log('file converted successfully');
+      const response = await fetch(apiUrl);
+      const data = await response.json();
 
-    // enable submit button
-    setButtonDisable(false);
+      // GET request succeeded
+      if (data.statusCode == 200) {
+        // retrive the results from response
+        var imageBytesData = data.body.result_img;
+        var textData = data.body.result_txt;
+        console.log(data.body);
+        console.log(imageBytesData);
+        console.log(textData);
+
+        // parse the result image
+        parseResultImage(imageBytesData);
+
+        // parse the result text
+        parseResultText(textData);
+
+        // end the while loop
+        resultReceived = true;
+      }
+    }
+
+    return resultReceived;
   }
-  
-  const loadFile = function(event) {
-    const reader = new FileReader();
-    reader.onload = function(){
-      const output = document.getElementById('output');
-      output.src = reader.result;
-    };
-    reader.readAsDataURL(event.target.files[0]);
-  };
- 
 
-  // handle file submission
-  const handleSubmit = (event) => {
+  // create a chain of GET requests
+  const createChainOfGETs = async (num, resultReceived) => {
+    for (let i = 0; i < num; i++) {
+      setOutputConsole(i.toString()+" GET requests created.");
+      resultReceived = await handleHttpGETRequest(resultReceived);
+      if (resultReceived) {
+        console.log("GET result received!");
+
+        // re-enable submit button
+        setButtonDisable(false);
+        setButtonText('Submit');
+        break;
+      }
+    }
+  }
+
+  // handle submit
+  const handleSubmitDebug = (event) => {
     event.preventDefault();
 
-    // temporarily disable submit button
+    // hide old result
+    setHiddenImg(true);
+
+    // update debug message
+    const debugMessage = timeRange+','+company+','+initialMoney;
+    setTextBox(debugMessage);
+
+    // temporarily disable the submit button
     setButtonDisable(true);
-    setButtonText('tyww Loading Result');
+    setButtonText('Loading Result');
 
     // make POST request
     console.log('making POST request...');
-    fetch('https://izm659ydfg.execute-api.us-east-1.amazonaws.com/prod/', {
+    fetch(apiUrl, {
       method: 'POST',
       headers: { "Content-Type": "application/json", "Accept": "text/plain" },
-      body: JSON.stringify({ "image": inputFileData })
+      body: JSON.stringify({ "model_params": timeRange+','+company+','+initialMoney })
     }).then(response => response.json())
     .then(data => {
-      console.log('getting response...')
+      console.log('getting response...');
       console.log(data);
 
       // POST request error
       if (data.statusCode === 400) {
         const outputErrorMessage = JSON.parse(data.errorMessage)['outputResultsData'];
-        setOutputFileData(outputErrorMessage);
+        setOutputConsole(outputErrorMessage);
+        console.log("fail to submit POST request")
+
+        // re-enable submit button
+        setButtonDisable(false);
+        setButtonText('Submit');
       }
 
       // POST request success
       else {
-        const outputBytesData = JSON.parse(data.body)['outputResultsData'];
-        setOutputFileData(decodeFileBase64(outputBytesData));
-      }
+        console.log("successfully submitted POST request, trying to GET result...")
+        setOutputConsole("Input submitted successfully.\n Waiting for training results......")
 
-      // re-enable submit button
-      setButtonDisable(false);
-      setButtonText('Submit');
-    })
-    .then(() => {
-      console.log('POST request success');
+        // start submitting GET requests and wait for the results to be downloaded
+        let resultReceived = false;
+
+        // as most as 240 GET requests (wait for at most 4 min)
+        createChainOfGETs(50, resultReceived);
+
+      }
     })
   }
   
-          function show_list() {
-            var courses = document.getElementById("courses_id");
-  
-            if (courses.style.display == "block") {
-                courses.style.display = "none";
-            } else {
-                courses.style.display = "block";
-            }
-        }
-        window.onclick = function (event) {
-            if (!event.target.matches('.dropdown_button')) {
-                document.getElementById('courses_id')
-                    .style.display = "none";
-            }
-        }   
-  
-  function dropdownMenu() {  
-var list = document.getElementById("option");  
-document.getElementById("city").value = list.options[list.selectedIndex].text;  
-} 
-
   return (
     <div className="App">
       <div className="Input">
         <h1>Input</h1>
-        <form onSubmit={handleSubmit}>
-          <input type="file" accept=".png" onChange={handleChange} />
-          <button type="submit" disabled={buttonDisable}>{buttonText}</button>
+        <form onSubmit={handleSubmitDebug}>
+          <div>
+          <label htmlFor="selectTimeRange">Select time range from the list: </label>  
+            <select id="selectTimeRange" onChange={inputTimeRange} required >  
+              <option value="year"> year </option>  
+              <option value="month"> month </option>  
+              <option value="week"> week </option>   
+            </select>
+            <span className="validity"></span>
+          </div>
+          <div>
+              <label htmlFor="selectCompany">Select company from the list: </label>  
+              <select id="selectCompany" onChange={inputCompany} required>  
+                <option value="goog"> Google </option>  
+              </select>
+              <span className="validity"></span>
+            </div>
+          <div>
+            <label htmlFor="initial_money">Initial money to invest (from 1000 to 1e6): </label>
+            <input id="initial_money" type="number" name="initial_money" min="1000" max="1000000" step="100" required
+                placeholder="e.g. 1000" onChange={inputInitialMoney} />
+            <span className="validity"></span>
+          </div>
+          <div>
+            <button type="submit" disabled={buttonDisable}>{buttonText}</button>
+          </div>
         </form>
       </div>
       <div className="Output">
         <h1>Results</h1>
-        <p>{outputFileData}</p>
-        <form>
-          <input type="file" accept="image/*" onchange="loadFile(event)" />
-          <img id="output" src="" width="100px" height="100px"/>
-        </form>
+        <p>
+          {outputConsole}
+        </p>
       </div>
-
-      <div class="dropdown_list">
-            <button class="dropdown_button" 
-                onclick="show_list()">
-                Select course
-            </button>
-  
-            <div id="courses_id" class="courses">
-                <li><a href="">Machine learing</a></li>
-                <li><a href="">Data science</a></li>
-                <li><a href="">Data analysis</a></li>
-                <li><a href="">Data mining</a></li>
-                <li><a href="">Data warehousing</a></li>
-            </div>
-        </div>
-
-<form>  
-<b> Select your City from the list</b>  
-<select id = "option" onchange = "dropdownMenu()" >  
-<option> ---Choose City--- </option>  
-<option> New York </option>  
-<option> Amsterdam </option>  
-<option> Paris </option>  
-<option> London </option>  
-</select>  
-<p> Your selected city is:  
-<input type = "text" id = "city" size = "20" /> </p>  
-</form> 
-
+      <div className="Debug_Report">
+        <p>
+          {textBox}
+        </p>
+      </div>
+      <div>
+        <img id="Image" src={outputImg} alt="result figure" hidden={hiddenImg} />
+      </div>
     </div>
   );
 }
