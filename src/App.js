@@ -102,7 +102,8 @@ function App() {
 
         // end the while loop
         resultReceived = true;
-      }
+      } else {
+        console.log("GET request returns 400, no result found!");
     }
 
     return resultReceived;
