@@ -104,6 +104,7 @@ function App() {
         resultReceived = true;
       } else {
         console.log("GET request returns 400, no result found!");
+      }
     }
 
     return resultReceived;
