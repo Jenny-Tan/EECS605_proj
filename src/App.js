@@ -13,7 +13,7 @@ const decodeFileBase64 = (base64String) => {
 
 
 function App() {
-  const apiUrl = 'https://l5c29682bl.execute-api.us-east-1.amazonaws.com/dev/';
+  const apiUrl = 'https://uk7xaut1oc.execute-api.us-east-1.amazonaws.com/dev/';
 
   const [buttonDisable, setButtonDisable] = React.useState(false);
   const [buttonText, setButtonText] = React.useState('Update');
