@@ -25,9 +25,9 @@ function App() {
   // output console
   const [outputImg, setOutputImg] = React.useState("/images/digit.png")
   const [hiddenImg, setHiddenImg] = React.useState(true);
-  const [outputConsole, setOutputConsole] = React.useState("output");
+  const [outputConsole, setOutputConsole] = React.useState("");
   // debug use
-  const [textBox, setTextBox] = React.useState("debug");
+  const [textBox, setTextBox] = React.useState("");
 
 //   // initial setup, hide the image
 //   document.getElementById("Image").style.display = "none";
@@ -54,7 +54,7 @@ function App() {
 
   // parse txt result
   const parseResultText = (resultTextJson) => {
-    setTextBox(resultTextJson["buy"]);
+//     setTextBox(resultTextJson["buy"]);
   }
 
   // parse image result
@@ -121,6 +121,9 @@ function App() {
         // re-enable submit button
         setButtonDisable(false);
         setButtonText('Update');
+        
+        // change output text
+        setOutputConsole("Result downloaded!");
         break;
       }
     }
@@ -132,6 +135,7 @@ function App() {
 
     // hide old result
     setHiddenImg(true);
+    setOutputConsole("");
 
     // update debug message
     const debugMessage = timeRange+','+company+','+initialMoney;
@@ -175,10 +179,15 @@ function App() {
         // console.log(JSON.parse(data.body).result_txt);
         // console.log(data.body.result_img);
         // console.log(data.body.result_txt);
+        
+        // change output text
+        setOutputConsole("Result downloaded!");
+        
         // parse the result image
         parseResultImage(JSON.parse(data.body).result_img);
         // parse the result text
         parseResultText(JSON.parse(data.body).result_txt);
+        
         
         // re-enable update button
         setButtonDisable(false);
@@ -188,7 +197,7 @@ function App() {
       // no files but no error, trigger the training module
       else {
         console.log("successfully submitted POST request, trying to GET result...")
-        setOutputConsole("Waiting for training results......")
+        setOutputConsole("Params setupt not cached. Waiting for training results......")
 
         // start submitting GET requests and wait for the results to be downloaded
         let resultReceived = false;
