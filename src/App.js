@@ -79,8 +79,8 @@ function App() {
       console.log("timeout in 15 seconds");
 
       const response = await fetch(apiUrl, {
-        method: 'GET',
-        body: JSON.stringify({ "model_params": timeRange+'-'+initialMoney+'-'+company })
+        method: 'GET'
+//         body: JSON.stringify({ "model_params": timeRange+'-'+initialMoney+'-'+company })
       });
       // need to manufacture the GET request body
       const data = await response.json();
@@ -254,11 +254,11 @@ function App() {
           {outputConsole}
         </p>
       
-      <div className="Debug_Report">
-        <p>
-          {textBox}
-        </p>
-      </div>
+//       <div className="Debug_Report">
+//         <p>
+//           {textBox}
+//         </p>
+//       </div>
       <div>
         <img id="Image" src={outputImg} alt="result figure" hidden={hiddenImg} />
       </div>
