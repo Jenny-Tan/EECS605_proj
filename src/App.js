@@ -78,7 +78,10 @@ function App() {
       await sleepHelper(15000); // wait for every 15 seconds
       console.log("timeout in 15 seconds");
 
-      const response = await fetch(apiUrl);
+      const response = await fetch(apiUrl, {
+        method: 'GET',
+        body: JSON.stringify({ "model_params": timeRange+'-'+initialMoney+'-'+company })
+      });
       // need to manufacture the GET request body
       const data = await response.json();
 
