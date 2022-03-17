@@ -88,8 +88,8 @@ function App() {
       // GET request succeeded
       if (data.statusCode == 200) {
         // retrive the results from response
-        var imageBytesData = data.body.result_img;
-        var textData = data.body.result_txt;
+        var imageBytesData = JSON.parse(data.body).result_img;
+        var textData = JSON.parse(data.body).result_txt;
         console.log(data.body);
         console.log(imageBytesData);
         console.log(textData);
