@@ -166,10 +166,12 @@ function App() {
       // status code = 200, result received
       else if (data.statusCode == 200) {
         console.log("submission is cached. Result received with status code 200.");
+        
+        body_json = JSON.parse(data.body)
         // parse the result image
-        parseResultImage(data.body.result_img);
+        parseResultImage(body_json.result_img);
         // parse the result text
-        parseResultText(data.body.result_txt);
+        parseResultText(body_json.result_txt);
         
         // re-enable update button
         setButtonDisable(false);
