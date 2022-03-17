@@ -253,12 +253,7 @@ function App() {
         <p>
           {outputConsole}
         </p>
-      
-//       <div className="Debug_Report">
-//         <p>
-//           {textBox}
-//         </p>
-//       </div>
+  
       <div>
         <img id="Image" src={outputImg} alt="result figure" hidden={hiddenImg} />
       </div>
