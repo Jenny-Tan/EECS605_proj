@@ -170,6 +170,11 @@ function App() {
         
         // body_json = JSON.parse(data.body);
         console.log(JSON.parse(data.body));
+        
+        console.log(JSON.parse(data.body).result_img);
+        console.log(JSON.parse(data.body).result_txt);
+        console.log(data.body.result_img);
+        console.log(data.body.result_txt);
         // parse the result image
         parseResultImage(data.body.result_img);
         // parse the result text
