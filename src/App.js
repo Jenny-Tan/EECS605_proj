@@ -16,7 +16,7 @@ function App() {
   const apiUrl = 'https://l5c29682bl.execute-api.us-east-1.amazonaws.com/dev/';
 
   const [buttonDisable, setButtonDisable] = React.useState(false);
-  const [buttonText, setButtonText] = React.useState('Submit');
+  const [buttonText, setButtonText] = React.useState('Update');
 
   // input parameters
   const [initialMoney, setInitialMoney] = React.useState('1000');
@@ -70,7 +70,7 @@ function App() {
     if (resultReceived) {
       // re-enable submit button
       setButtonDisable(false);
-      setButtonText('Submit');
+      setButtonText('Update');
     } 
     
     else {
@@ -79,6 +79,7 @@ function App() {
       console.log("timeout in 15 seconds");
 
       const response = await fetch(apiUrl);
+      // need to manufacture the GET request body
       const data = await response.json();
 
       // GET request succeeded
@@ -107,21 +108,21 @@ function App() {
   // create a chain of GET requests
   const createChainOfGETs = async (num, resultReceived) => {
     for (let i = 0; i < num; i++) {
-      setOutputConsole(i.toString()+" GET requests created.");
+      // setOutputConsole(i.toString()+" GET requests created.");
       resultReceived = await handleHttpGETRequest(resultReceived);
       if (resultReceived) {
         console.log("GET result received!");
 
         // re-enable submit button
         setButtonDisable(false);
-        setButtonText('Submit');
+        setButtonText('Update');
         break;
       }
     }
   }
 
   // handle submit
-  const handleSubmitDebug = (event) => {
+  const handleUpdate = (event) => {
     event.preventDefault();
 
     // hide old result
@@ -154,13 +155,26 @@ function App() {
 
         // re-enable submit button
         setButtonDisable(false);
-        setButtonText('Submit');
+        setButtonText('Update');
       }
-
-      // POST request success
+      
+      // status code = 200, result received
+      else if (data.statusCode == 200) {
+        console.log("submission is cached. Result received with status code 200.");
+        // parse the result image
+        parseResultImage(data.body.result_img);
+        // parse the result text
+        parseResultText(data.body.result_txt);
+        
+        // re-enable update button
+        setButtonDisable(false);
+        setButtonText("Update");
+      }
+      
+      // no files but no error, trigger the training module
       else {
         console.log("successfully submitted POST request, trying to GET result...")
-        setOutputConsole("Input submitted successfully.\n Waiting for training results......")
+        setOutputConsole("Waiting for training results......")
 
         // start submitting GET requests and wait for the results to be downloaded
         let resultReceived = false;
@@ -177,7 +191,7 @@ function App() {
     <div className="split left">
       <div className="centered">
       <h1>Input</h1>
-        <form onSubmit={handleSubmitDebug}>
+        <form onSubmit={handleUpdate}>
           <div>
     
           <label htmlFor="selectTimeRange" style={{color : 'white'}}>Select time range from the list: </label>  
