@@ -166,8 +166,10 @@ function App() {
       // status code = 200, result received
       else if (data.statusCode == 200) {
         console.log("submission is cached. Result received with status code 200.");
+        console.log(data.body);
         
-        body_json = JSON.parse(data.body)
+        body_json = JSON.parse(data.body);
+        console.log(data.body_json);
         // parse the result image
         parseResultImage(body_json.result_img);
         // parse the result text
