@@ -262,6 +262,13 @@ function App() {
       </p>
 </div>
       </div>
+<div className="footer">
+        <p>
+        Yingwen Tan's Demo Site <br>
+         tywwyt@umich.edu
+      </p>
+          
+</div>
     </div>
   );
 }
