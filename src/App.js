@@ -257,9 +257,9 @@ function App() {
           {outputConsole}
         </p>
   
-      <div>
-        <img id="Image" src={outputImg} alt="result figure" hidden={hiddenImg} width="232" height="150" />
-      </div>
+      <p>
+        <img id="Image" src={outputImg} alt="result figure" hidden={hiddenImg} width="500" height="200" />
+      </p>
 </div>
       </div>
     </div>
