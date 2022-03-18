@@ -94,8 +94,8 @@ input:valid+span:after {
 
 /* Style the image inside the centered container, if needed */
 .centered img {
-  width: 150px;
-  border-radius: 80%;
+/*  width: 150px;
+  border-radius: 80%;*/
 }
 h1{
   color: white;
