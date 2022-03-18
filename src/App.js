@@ -264,8 +264,7 @@ function App() {
       </div>
 <div className="footer">
         <p>
-        Yingwen Tan's Demo Site <br></br>
-         tywwyt@umich.edu
+        ✨ Yingwen Tan's Demo Site 🥳 Find me at tywwyt@umich.edu 🌟
       </p>
           
 </div>
