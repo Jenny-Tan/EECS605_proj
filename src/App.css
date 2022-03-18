@@ -62,7 +62,7 @@ input:valid+span:after {
 
 /* Split the screen in half */
 .split {
-  height: 93%;
+  height: 90%;
   width: 50%;
   position: fixed;
   z-index: 1;
