@@ -197,7 +197,7 @@ function App() {
       // no files but no error, trigger the training module
       else {
         console.log("successfully submitted POST request, trying to GET result...")
-        setOutputConsole("Params setupt not cached. Waiting for training results......")
+        setOutputConsole("Params setup not cached. Waiting for training results......")
 
         // start submitting GET requests and wait for the results to be downloaded
         let resultReceived = false;
