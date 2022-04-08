@@ -117,6 +117,9 @@ function App() {
     document.getElementById("selectTimeRange").value = 'year';
     document.getElementById("selectCompany").value = 'amzn';
     document.getElementById("initial_money").value = '10000';
+    setCompany('amzn');
+    setTimeRange('year');
+    setInitialMoney('10000');
     console.log("Reset all values");
 }
 
