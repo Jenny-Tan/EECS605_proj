@@ -260,7 +260,7 @@ function App() {
                   
              <a href="https://docs.google.com/document/d/1GiIBPBgo4xeNj3bZa6ZlMSOn0dDZ9beKVHr1DxFPNJY/edit?usp=sharing">REPORT LINK</a>
                 
-            <input type="button" value="Reset" onclick="clearResult()">
+            <input type="button" value="Reset" onclick="clearResult()"></input>
             
           </div>
         </form>
