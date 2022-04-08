@@ -242,16 +242,14 @@ function App() {
             <span className="validity"></span>
           </div>
           <div>
-            <form>
-              <div className="row">
-                <div className="col">
+            
+              
             <button type="submit" disabled={buttonDisable}>{buttonText}</button>
-                </div>
-                  <div className="col">
-              <a href="https://docs.google.com/document/d/1GiIBPBgo4xeNj3bZa6ZlMSOn0dDZ9beKVHr1DxFPNJY/edit?usp=sharing">REPORT LINK</a>
-                  </div>
-                </div>
-            </form>
+                
+                  
+             <a href="https://docs.google.com/document/d/1GiIBPBgo4xeNj3bZa6ZlMSOn0dDZ9beKVHr1DxFPNJY/edit?usp=sharing">REPORT LINK</a>
+                  
+            
           </div>
         </form>
       </div>
