@@ -111,7 +111,8 @@ function App() {
   }
   
   
-  function clearResult(){
+  //function clearResult(){
+  const clearResult = async (event) => {
     console.log("RESET button");
   //document.getElementById("result").value = ''
 //     document.getElementById("selectTimeRange").value = 'year';
@@ -264,7 +265,7 @@ function App() {
                   
              <a href="https://docs.google.com/document/d/1GiIBPBgo4xeNj3bZa6ZlMSOn0dDZ9beKVHr1DxFPNJY/edit?usp=sharing">REPORT LINK</a>
                 
-            <input type="button" value="Reset" onclick="clearResult()"></input>
+            <input type="button" value="Reset" onClick={clearResult}></input>
             
           </div>
         </form>
