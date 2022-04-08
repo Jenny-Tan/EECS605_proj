@@ -115,15 +115,16 @@ function App() {
   const clearResult = async (event) => {
     console.log("RESET button");
   //document.getElementById("result").value = ''
-//     document.getElementById("selectTimeRange").value = 'year';
-//     document.getElementById("selectCompany").value = 'goog';
-//     document.getElementById("selectTimeRange").value = '1000';
+    document.getElementById("selectTimeRange").value = 'year';
+    document.getElementById("selectCompany").value = 'goog';
+    document.getElementById("selectTimeRange").value = '1000';
 //       const [initialMoney, setInitialMoney] = React.useState('1000');
 //   const [timeRange, setTimeRange] = React.useState('year');
 //   const [company, setCompany] = React.useState('goog');
-    setInitialMoney('1000');
-    setTimeRange('year');
-    setCompany('goog');
+//     setInitialMoney('1000');
+//     setTimeRange('year');
+//     setCompany('goog');
+    console.log("Reset all values");
 }
 
   // create a chain of GET requests
