@@ -109,6 +109,17 @@ function App() {
 
     return resultReceived;
   }
+  
+  
+  function clearResult(){
+  //document.getElementById("result").value = ''
+    document.getElementById("selectTimeRange").value = 'year';
+    document.getElementById("selectCompany").value = 'goog';
+    document.getElementById("selectTimeRange").value = '1000';
+//       const [initialMoney, setInitialMoney] = React.useState('1000');
+//   const [timeRange, setTimeRange] = React.useState('year');
+//   const [company, setCompany] = React.useState('goog');
+}
 
   // create a chain of GET requests
   const createChainOfGETs = async (num, resultReceived) => {
@@ -248,7 +259,8 @@ function App() {
                 
                   
              <a href="https://docs.google.com/document/d/1GiIBPBgo4xeNj3bZa6ZlMSOn0dDZ9beKVHr1DxFPNJY/edit?usp=sharing">REPORT LINK</a>
-                  
+                
+            <input type="button" value="Reset" onclick="clearResult()">
             
           </div>
         </form>
